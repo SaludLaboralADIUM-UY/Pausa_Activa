@@ -57,6 +57,8 @@ const getStepSideStatus = (routId: string, stepIdx: number, mirrored: boolean): 
   return mirrored ? 'izquierdo' : 'derecho';
 };
 
+const asset = (path: string) => import.meta.env.BASE_URL + path.replace(/^\//, '');
+
 export default function App() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false); // Start paused — user must press Reanudar Ciclo
   const [routineIndex, setRoutineIndex] = useState<number>(0);
@@ -350,7 +352,7 @@ export default function App() {
   // Dedicated component to render either legacy images or high-fidelity beautiful SVGs which are fully responsive
   function Illustration({ imageKey, isMirrored }: { imageKey: string; isMirrored: boolean }) {
     if (imageKey.startsWith('video:')) {
-      const src = imageKey.substring(6);
+      const src = asset(imageKey.substring(6));
       return (
         <video
           src={src}
@@ -367,7 +369,7 @@ export default function App() {
     if (!imageKey.startsWith('svg:')) {
       return (
         <img
-          src={imageKey}
+          src={asset(imageKey)}
           alt="Pose de estiramiento"
           referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover select-none"
@@ -577,7 +579,7 @@ export default function App() {
       {/* HEADER */}
       <header className="w-full bg-[#e8001c] px-8 py-0 flex items-center shadow-md z-50">
         <img
-          src="/images/logo_adium.png"
+          src={asset('/images/logo_adium.png')}
           alt="Adium"
           className="h-28 object-contain"
         />
@@ -754,7 +756,7 @@ export default function App() {
                 {/* Locked Aspect Box — imagen de hidratación (búsqueda de agua) */}
                 <div className="relative aspect-[9/16] w-full rounded-[24px] overflow-hidden bg-[#eef3f4]">
                   <img
-                    src="/images/busqueda_agua.png"
+                    src={asset('/images/busqueda_agua.png')}
                     alt="Persona caminando a buscar agua"
                     className="absolute inset-0 w-full h-full object-cover select-none"
                     style={{ pointerEvents: 'none' }}
@@ -908,7 +910,7 @@ export default function App() {
                   <video
                     key={currentRoutine.id}
                     ref={videoRef}
-                    src={currentRoutine.steps[0].image.substring(6)}
+                    src={asset(currentRoutine.steps[0].image.substring(6))}
                     autoPlay
                     loop
                     muted
