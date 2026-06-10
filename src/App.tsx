@@ -579,7 +579,7 @@ export default function App() {
       {/* HEADER */}
       <header className="w-full bg-[#e8001c] px-8 py-0 flex items-center shadow-md z-50">
         <img
-          src={asset('/images/logo_adium.png')}
+          src={asset('/images/logo_adium.webp')}
           alt="Adium"
           className="h-28 object-contain"
         />
@@ -756,7 +756,7 @@ export default function App() {
                 {/* Locked Aspect Box — imagen de hidratación (búsqueda de agua) */}
                 <div className="relative aspect-[9/16] w-full rounded-[24px] overflow-hidden bg-[#eef3f4]">
                   <img
-                    src={asset('/images/busqueda_agua.png')}
+                    src={asset('/images/busqueda_agua.webp')}
                     alt="Persona caminando a buscar agua"
                     className="absolute inset-0 w-full h-full object-cover select-none"
                     style={{ pointerEvents: 'none' }}
