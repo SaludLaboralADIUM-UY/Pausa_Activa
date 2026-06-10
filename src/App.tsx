@@ -577,7 +577,7 @@ export default function App() {
       {/* HEADER */}
       <header className="w-full bg-[#e8001c] px-8 py-0 flex items-center shadow-md z-50">
         <img
-          src="/src/assets/images/logo_adium.png"
+          src="/images/logo_adium.png"
           alt="Adium"
           className="h-28 object-contain"
         />
@@ -706,7 +706,7 @@ export default function App() {
               </div>
 
               <div className="px-2">
-                <h4 className="text-xs font-bold tracking-wider text-[#716f67] uppercase mb-3">Recomendaciones ergonómicas corporativas Adium</h4>
+                <h4 className="text-xs font-bold tracking-wider text-[#716f67] uppercase mb-3">Recomendaciones extra para la salud visual</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="bg-white border border-[#e2ddd5] rounded-2xl p-4">
                     <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#30475c] mb-1.5">Brillo de monitor</h5>
@@ -754,7 +754,7 @@ export default function App() {
                 {/* Locked Aspect Box — imagen de hidratación (búsqueda de agua) */}
                 <div className="relative aspect-[9/16] w-full rounded-[24px] overflow-hidden bg-[#eef3f4]">
                   <img
-                    src="/src/assets/images/busqueda_agua.png"
+                    src="/images/busqueda_agua.png"
                     alt="Persona caminando a buscar agua"
                     className="absolute inset-0 w-full h-full object-cover select-none"
                     style={{ pointerEvents: 'none' }}
