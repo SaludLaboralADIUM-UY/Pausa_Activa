@@ -137,12 +137,15 @@ export default function App() {
     return routine.id === 'respiracion' ? base + 1 : base;
   };
 
-  // Helper to change routines cleanly
+  // Helper to change routines cleanly — always pauses and resets to step 1
   const handleSetRoutineIndex = (newIndex: number) => {
+    setIsPlaying(false);
     setRoutineIndex(newIndex);
     setActiveStep(0);
     setPrevStep(0);
     setPhase('hold');
+    phaseElapsedRef.current = 0;
+    setRingProgress(0);
     const firstStepDuration = getStepHoldDuration(0, newIndex);
     setSecondsRemaining(firstStepDuration);
     setSliderValue(0);
@@ -1108,10 +1111,14 @@ export default function App() {
                     <button 
                       key={step.index} 
                       onClick={() => {
+                        setIsPlaying(false);
                         setActiveStep(step.index);
-                        setPrevStep(activeStep);
+                        setPrevStep(step.index);
                         setPhase('hold');
+                        phaseElapsedRef.current = 0;
+                        setRingProgress(0);
                         setSecondsRemaining(getStepHoldDuration(step.index, routineIndex));
+                        setSliderValue(step.index);
                       }}
                       className={`p-3 rounded-2xl border text-center transition-all duration-300 text-left ${
                         isActive 
