@@ -29,6 +29,7 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_SHOW_AREA_SELECTOR: ${{ vars.VITE_SHOW_AREA_SELECTOR || 'true' }}
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:

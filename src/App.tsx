@@ -79,6 +79,7 @@ const AREAS_TRABAJO = [
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const showAreaSelector = import.meta.env.VITE_SHOW_AREA_SELECTOR !== 'false';
   const [selectedArea, setSelectedArea] = useState<string | null>(
     () => localStorage.getItem('adium_area') ?? null
   );
@@ -669,7 +670,7 @@ export default function App() {
         />
 
         {/* Area selector */}
-        <div className="ml-auto" ref={areaDropdownRef}>
+        {showAreaSelector && <div className="ml-auto" ref={areaDropdownRef}>
           <button
             onClick={() => setAreaDropdownOpen(!areaDropdownOpen)}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-sm font-medium transition-all duration-200 border border-white/20"
@@ -705,7 +706,7 @@ export default function App() {
               </ul>
             </div>
           )}
-        </div>
+        </div>}
       </header>
 
       {/* 2. MAIN WORKSPACE */}
