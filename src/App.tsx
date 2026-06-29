@@ -683,7 +683,7 @@ export default function App() {
                 Área de trabajo
               </h2>
               <p className="text-sm text-[#6b6960] mb-6 leading-relaxed">
-                Seleccioná tu área de trabajo para comenzar. El dato solo se pedirá una sola vez en este dispositivo.
+                Seleccione su área de trabajo para comenzar. Este dato solo se pedirá una sola vez en este dispositivo.
               </p>
 
               <div className="relative mb-4">
@@ -730,43 +730,12 @@ export default function App() {
         />
 
         {/* Area selector */}
-        {showAreaSelector && <div className="ml-auto" ref={areaDropdownRef}>
-          <button
-            onClick={() => setAreaDropdownOpen(!areaDropdownOpen)}
-            className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-sm transition-all duration-200 border border-white/25 min-w-[200px]"
-          >
-            <span className="text-white/60 text-sm font-normal">Área:</span>
-            <span className="font-bold flex-1 truncate">
-              {selectedArea ?? 'Seleccionar'}
-            </span>
-            <ChevronRight className="w-4 h-4 opacity-60 shrink-0" />
-          </button>
-
-          {/* Dropdown */}
-          {areaDropdownOpen && (
-            <div className="absolute right-8 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-[100]">
-              <div className="px-4 py-3 border-b border-gray-100">
-                <p className="text-xs font-bold text-[#30475c] uppercase tracking-wider">Seleccionar área de trabajo</p>
-              </div>
-              <ul className="max-h-72 overflow-y-auto py-2">
-                {AREAS_TRABAJO.map(area => (
-                  <li key={area}>
-                    <button
-                      onClick={() => handleSelectArea(area)}
-                      className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
-                        selectedArea === area
-                          ? 'bg-[#30475c] text-white font-semibold'
-                          : 'text-[#2f2e27] hover:bg-[#f5f3ef]'
-                      }`}
-                    >
-                      {area}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>}
+        {showAreaSelector && selectedArea && (
+          <div className="ml-auto flex items-center gap-1.5 text-white text-sm">
+            <span className="text-white/55 font-normal">Área:</span>
+            <span className="font-semibold truncate max-w-[200px]">{selectedArea}</span>
+          </div>
+        )}
       </header>
 
       {/* 2. MAIN WORKSPACE */}
