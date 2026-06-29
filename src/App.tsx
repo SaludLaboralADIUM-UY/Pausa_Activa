@@ -658,11 +658,71 @@ export default function App() {
     );
   }
 
+  // PANTALLA DE REGISTRO — solo si no hay área guardada
+  if (showAreaSelector && selectedArea === null) {
+    return (
+      <div className="min-h-screen font-sans flex flex-col">
+        <header className="w-full bg-[#ff0032] px-8 py-0 flex items-center shadow-md shrink-0">
+          <img src={asset('/images/logo_adium.webp')} alt="Adium" className="h-28 object-contain" />
+        </header>
+
+        <main className="flex-1 flex flex-col lg:flex-row min-h-0">
+          {/* Panel izquierdo — marca */}
+          <div className="bg-[#30475c] lg:w-[38%] flex flex-col justify-center px-10 py-14 shrink-0">
+            <span className="text-xs font-bold tracking-widest text-white/40 uppercase block mb-4">Salud Ocupacional</span>
+            <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-white leading-tight mb-8">
+              Pausas Activas<br/>ADIUM Uruguay
+            </h1>
+            <div className="w-8 h-1 bg-[#ff0032] rounded-full" />
+          </div>
+
+          {/* Panel central — dropdown de selección */}
+          <div className="flex-1 bg-[#f9f7f4] flex flex-col items-center justify-center px-8 sm:px-14 py-10">
+            <div className="w-full max-w-sm">
+              <h2 className="text-xs font-bold tracking-widest text-[#30475c] uppercase mb-2">
+                Área de trabajo
+              </h2>
+              <p className="text-sm text-[#6b6960] mb-6 leading-relaxed">
+                Seleccioná tu área de trabajo para comenzar. El dato solo se pedirá una sola vez en este dispositivo.
+              </p>
+
+              <div className="relative mb-4">
+                <select
+                  id="area-select"
+                  defaultValue=""
+                  onChange={e => {
+                    if (e.target.value) handleSelectArea(e.target.value);
+                  }}
+                  className="w-full appearance-none bg-white border border-[#d5d2c8] rounded-2xl px-5 py-4 text-sm font-medium text-[#2f2e27] focus:outline-none focus:ring-2 focus:ring-[#30475c] focus:border-transparent cursor-pointer shadow-sm pr-12"
+                >
+                  <option value="" disabled>Seleccioná tu área...</option>
+                  {AREAS_TRABAJO.map(area => (
+                    <option key={area} value={area}>{area}</option>
+                  ))}
+                </select>
+                <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#30475c] rotate-90 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer className="w-full bg-[#44546a] py-3 px-8 flex items-center justify-center gap-4 text-xs text-white/70 shrink-0">
+          <div className="flex items-center gap-2">
+            <Monitor className="w-4 h-4 text-white/50" />
+            <span>Pantalla dinámica para pausas activas - 2026</span>
+          </div>
+          <span className="font-light opacity-40">|</span>
+          <p>© 2026 Dr. Emiliano Figuerón · Salud Ocupacional ADIUM Uruguay</p>
+        </footer>
+      </div>
+    );
+  }
+
   return (
     <div id="active-break-root" className={`min-h-screen ${dmBgPage} ${dmTextPage} font-sans flex flex-col justify-between selection:bg-[#30475c]/20 overflow-x-hidden transition-colors duration-300`}>
 
       {/* HEADER */}
-      <header className="w-full bg-[#e8001c] px-8 py-0 flex items-center shadow-md z-50 relative">
+      <header className="w-full bg-[#ff0032] px-8 py-0 flex items-center shadow-md z-50 relative">
         <img
           src={asset('/images/logo_adium.webp')}
           alt="Adium"
@@ -673,13 +733,13 @@ export default function App() {
         {showAreaSelector && <div className="ml-auto" ref={areaDropdownRef}>
           <button
             onClick={() => setAreaDropdownOpen(!areaDropdownOpen)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-sm font-medium transition-all duration-200 border border-white/20"
+            className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-sm transition-all duration-200 border border-white/25 min-w-[200px]"
           >
-            <span className="text-white/60 text-xs font-normal mr-1">Área:</span>
-            <span className="max-w-[180px] truncate">
+            <span className="text-white/60 text-sm font-normal">Área:</span>
+            <span className="font-bold flex-1 truncate">
               {selectedArea ?? 'Seleccionar'}
             </span>
-            <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${areaDropdownOpen ? 'rotate-90' : ''}`} />
+            <ChevronRight className="w-4 h-4 opacity-60 shrink-0" />
           </button>
 
           {/* Dropdown */}
